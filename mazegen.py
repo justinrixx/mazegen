@@ -50,22 +50,22 @@ def print_maze(maze):
         for c in row:
             s += '+'
             if c.up:
-                s += '-'
+                s += '--'
             else:
-                s += ' '
+                s += '  '
         s += '+\n'
 
         # | |  |   | |
         for c in row:
             if c.left:
-                s += '| '
+                s += '|  '
             else:
-                s += '  '
+                s += '   '
         s += '|\n'
 
     # add a row at the bottom
     for i in range(0, len(maze[0])):
-        s += '+-'
+        s += '+--'
     s += '+\n'
 
     print(s)
