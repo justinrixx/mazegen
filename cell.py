@@ -38,3 +38,29 @@ class Cell:
             return None
         else:
             return random.choice(neighbors)
+
+    def get_visited_neighbor(self, maze):
+        """Pick a random neighbor to return. Doesn't matter if it's been visited before."""
+
+        neighbors = []
+
+        # top
+        if self.row - 1 > -1:
+            neighbors.append((self.row - 1, self.col))
+
+        # right
+        if self.col + 1 < len(maze[0]):
+            neighbors.append((self.row, self.col + 1))
+
+        # bottom
+        if self.row + 1 < len(maze):
+            neighbors.append((self.row + 1, self.col))
+
+        # left
+        if self.col - 1 > -1:
+            neighbors.append((self.row, self.col - 1))
+
+        if not neighbors:
+            return None
+        else:
+            return random.choice(neighbors)
