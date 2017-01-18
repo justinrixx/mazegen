@@ -119,6 +119,7 @@ def remove_wall(current, neighbor):
         current.left = False
         neighbor.right = False
 
+
 def has_wall(current, neighbor):
     """Determine if a wall exists between two cells"""
 
@@ -138,6 +139,7 @@ def has_wall(current, neighbor):
     # left
     elif current.row == neighbor.row and current.col - 1 == neighbor.col:
         return current.left and neighbor.right
+
 
 def make_blank_maze(rows, cols):
     """Construct a blank maze of the proper size"""

@@ -13,9 +13,8 @@ class Cell:
         self.row = row
         self.col = col
 
-    def get_neighbor(self, maze):
-        """Pick a random neighbor to return"""
-
+    def get_all_neighbors(self, maze):
+        """Get a list of all the neighbors to this cell"""
         neighbors = []
 
         # top
@@ -33,6 +32,13 @@ class Cell:
         # left
         if self.col - 1 > -1 and not maze[self.row][self.col - 1].visited:
             neighbors.append((self.row, self.col - 1))
+
+        return neighbors
+
+    def get_neighbor(self, maze):
+        """Pick a random neighbor to return"""
+
+        neighbors = self.get_all_neighbors(maze)
 
         if not neighbors:
             return None
