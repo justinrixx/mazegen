@@ -25,7 +25,7 @@ def main(argv):
         for a in ants:
             a.step(ant_positions)
         print_maze(maze, ant_positions)
-        time.sleep(.5)
+        time.sleep(.1)
 
 
 def gen_edges(rows, cols):
@@ -43,7 +43,7 @@ def gen_edges(rows, cols):
 
         # add each item into the new array
         for j in range(0, size):
-            row.append(1.0)
+            row.append(.01)
 
         edges.append(row)
 

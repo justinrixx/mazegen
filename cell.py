@@ -18,20 +18,23 @@ class Cell:
         neighbors = []
 
         # top
-        if self.row - 1 > -1:
+        if self.row - 1 > -1 and not self.up:
             neighbors.append((self.row - 1, self.col))
 
         # right
-        if self.col + 1 < len(maze[0]):
+        if self.col + 1 < len(maze[0]) and not self.right:
             neighbors.append((self.row, self.col + 1))
 
         # bottom
-        if self.row + 1 < len(maze):
+        if self.row + 1 < len(maze) and not self.down:
             neighbors.append((self.row + 1, self.col))
 
         # left
-        if self.col - 1 > -1:
+        if self.col - 1 > -1 and not self.left:
             neighbors.append((self.row, self.col - 1))
+
+        # should always be at least 1 neighbor
+        assert neighbors
 
         return neighbors
 
