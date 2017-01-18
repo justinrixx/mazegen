@@ -39,8 +39,9 @@ class Ant:
 
             # cycle removal
             if path in self.memory:
-                for i in range(self.memory.index(path) + 1, len(self.memory) + 1):
-                    del self.memory[i]
+                location = self.memory.index(path)
+                for i in range(location + 1, len(self.memory)):
+                    del self.memory[location + 1]
             # move on
             else:
                 self.memory.append(path)
@@ -56,7 +57,7 @@ class Ant:
 
     def choose_path(self):
         """Choose the path to follow this step"""
-        neighbors = self.maze[self.i][self.j].get_all_neighbors()
+        neighbors = self.maze[self.i][self.j].get_all_neighbors(self.maze)
 
         choices = {}
         total = 0.0
@@ -72,7 +73,7 @@ class Ant:
             items.append(k)
             probs.append(v / total)
 
-        return np.random.choice(items, p=probs)
+        return items[np.random.choice(range(0, len(items)), p=probs)]
 
 
 def get_edge(r1, c1, r2, c2):
@@ -86,7 +87,9 @@ def get_edge(r1, c1, r2, c2):
         return r1 * 2, c1
     elif r1 == r2 + 1 and c1 == c2:
         # up
-        r1 * 2 - 1, c1
+        return r1 * 2 - 1, c1
     elif r1 + 1 == r2 and c1 == c2:
         # down
-        r1 * 2 + 1, c1
+        return r1 * 2 + 1, c1
+    else:
+        assert False
