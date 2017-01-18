@@ -15,7 +15,7 @@ class Ant:
         self.maze = maze
         self.edges = edges
 
-    def step(self):
+    def step(self, positions):
         """Moves the ant to the next cell. Could be looking for food, could be returning home"""
 
         # at the goal
@@ -52,6 +52,8 @@ class Ant:
             # go forward again if it's time
             if len(self.memory) == 0:
                 self.forward = True
+
+        positions[self.i][self.j] = True
 
     def choose_path(self):
         """Choose the path to follow this step"""
