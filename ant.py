@@ -7,7 +7,7 @@ class Ant:
         self.i = 0
         self.j = 0
 
-        self.memory = []
+        self.memory = [(0, 0)]
 
         # am i moving forward or backward?
         self.forward = True
@@ -24,12 +24,8 @@ class Ant:
 
             # lay down pheromone
             fitness = 1 / len(self.memory)
-            for i in range(0, len(self.memory)):
-                # start at the beginning (0, 0)
-                if i == 0:
-                    coords = get_edge(0, 0, self.memory[i][0], self.memory[i][1])
-                else:
-                    coords = get_edge(self.memory[i - 1][0], self.memory[i - 1][1],
+            for i in range(1, len(self.memory)):
+                coords = get_edge(self.memory[i - 1][0], self.memory[i - 1][1],
                                       self.memory[i][0], self.memory[i][1])
 
                 self.edges[coords[0]][coords[1]] += fitness
@@ -42,6 +38,8 @@ class Ant:
                 location = self.memory.index(path)
                 for i in range(location + 1, len(self.memory)):
                     del self.memory[location + 1]
+
+                self.i, self.j = path
             # move on
             else:
                 self.memory.append(path)
