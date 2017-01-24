@@ -63,9 +63,16 @@ class Ant:
         total = 0.0
         for n in neighbors:
             edge = get_edge(self.i, self.j, n[0], n[1])
-            choices[n] = self.edges[edge[0]][edge[1]]
 
-            total += self.edges[edge[0]][edge[1]]
+            amount = self.edges[edge[0]][edge[1]]
+
+            # don't incentivise moving backwards
+            if len(self.memory) > 1 and self.memory[-2] == n:
+            #if n in self.memory:
+                amount /= 8
+
+            choices[n] = amount
+            total += amount
 
         items = []
         probs = []

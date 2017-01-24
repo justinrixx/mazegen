@@ -43,7 +43,7 @@ def gen_edges(rows, cols):
 
         # add each item into the new array
         for j in range(0, size):
-            row.append(.01)
+            row.append(.001)
 
         edges.append(row)
 
